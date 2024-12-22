@@ -19,6 +19,9 @@
   --global-highlight-color: #{$red-color-dark};
   --global-back-to-top-bg-color: #{$black-color};
   --global-back-to-top-text-color: #{$white-color};
+  --photoviewer-title-color: #000; /* Default for light theme */
+  
+  
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
@@ -81,6 +84,7 @@ html[data-theme="dark"] {
   --global-card-bg-color: #{$grey-900};
   --global-back-to-top-bg-color: #{$white-color};
   --global-back-to-top-text-color: #{$black-color};
+  --photoviewer-title-color: #fff; /* Override for dark theme */
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
