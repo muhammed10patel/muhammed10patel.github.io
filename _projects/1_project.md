@@ -8,13 +8,13 @@ category: work
 related_publications: false
 ---
 
----
-Highlights
--- Developed a SAR imagery foundation model using Masked Autoencoders (MAE) for feature learning.
--- Pre-trained Vision Transformer (ViT) on AI4Arctic dataset with MAE, fine-tuned for segmentation.
--- Achieved 5% F1-score increase over UNet benchmark with only 50% labeled data.
--- Model learned SAR features and irregular objects like ice, water, and land.
----
+    ---
+    Highlights
+    -- Developed a SAR imagery foundation model using Masked Autoencoders (MAE) for feature learning.
+    -- Pre-trained Vision Transformer (ViT) on AI4Arctic dataset with MAE, fine-tuned for segmentation.
+    -- Achieved 5% F1-score increase over UNet benchmark with only 50% labeled data.
+    -- Model learned SAR features and irregular objects like ice, water, and land.
+    ---
 
 <div class="project-gallery row text-center">
     <div class="col-sm mt-3 mt-md-0">
