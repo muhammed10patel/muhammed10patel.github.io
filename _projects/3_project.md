@@ -118,18 +118,167 @@ First we start with three main family of objection detection architectures: Fast
 
 #### Result
 
-The below precision-recall curve shows the performance of all
+The below table shows the  $$ mAP_{IoU=10\%} $$ the performance of all the experiments. As can be seen the, FasterRCNN model, with ConvNext-T backbone performs best.
 
-| # Params | Model             | Backbone           | Patch size 256 | Patch size 512 | Patch size 1024 | Patch size 2048 | Patch size 4096 | resize 50% |
-|----------|-------------------|--------------------|----------------|----------------|-----------------|-----------------|-----------------|------------|
-| 40.10M   | Deformable DETR   | ResNet-50          | 0.794          | 0.820          | 0.847           | 0.761           | NP              | 0.318      |
-| 38.84M   | Deformable DETR   | Swin-T             | 0.00           | 0.841          | 0.828           | NP              | NP              | NP         |
-| 40.80M   | Deformable DETR   | VMamba-T           | 0.775          | 0.788          | LDC             | NP              | NP              | NP         |
-| 39.15M   | Deformable DETR   | ConvNext-T         | 0.812          | 0.833          | 0.832           | 0.741           | NP              | NP         |
-| 41.35M   | FasterRCNN        | ResNet-50          | 0.746          | 0.810          | 0.833           | 0.843           | 0.840           | 0.663      |
-| 44.75M   | FasterRCNN        | Swin-T             | 0.793          | 0.841          | **0.863**       | **0.860**       | NP              | NP         |
-| 46.71M   | FasterRCNN        | VMamba-T           | 0.772          | 0.788          | 0.818           | 0.802           | NP              | NP         |
-| 45.05M   | FasterRCNN        | ConvNext           | 0.784          | 0.834          | **0.861**       | **0.878**       | NP              | NP         |
-| 11.14M   | Yolov8-s          | Yolov8CSPDarkNet   | 0.747          | 0.791          | 0.812           | 0.645           | NP              | NP         |
-| 43.69M   | Yolov8-l          | Yolov8CSPDarkNet   | 0.746          | 0.804          | 0.802           | 0.731           | NP              | NP         |
 
+
+<table style="border-collapse: collapse; width: 100%; text-align: center;">
+  <thead>
+    <tr style="border: 1px solid black;">
+      <th style="border: 1px solid black;"># Params</th>
+      <th style="border: 1px solid black;">Model</th>
+      <th style="border: 1px solid black;">Backbone</th>
+      <th style="border: 1px solid black;">Patch size 256</th>
+      <th style="border: 1px solid black;">Patch size 512</th>
+      <th style="border: 1px solid black;">Patch size 1024</th>
+      <th style="border: 1px solid black;">Patch size 2048</th>
+      <th style="border: 1px solid black;">Patch size 4096</th>
+      <th style="border: 1px solid black;">resize 50%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">40.10M</td>
+      <td style="border: 1px solid black;">Deformable DETR</td>
+      <td style="border: 1px solid black;">ResNet-50</td>
+      <td style="border: 1px solid black;">0.794</td>
+      <td style="border: 1px solid black;">0.820</td>
+      <td style="border: 1px solid black;">0.847</td>
+      <td style="border: 1px solid black;">0.761</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">0.318</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">38.84M</td>
+      <td style="border: 1px solid black;">Deformable DETR</td>
+      <td style="border: 1px solid black;">Swin-T</td>
+      <td style="border: 1px solid black;">0.00</td>
+      <td style="border: 1px solid black;">0.841</td>
+      <td style="border: 1px solid black;">0.828</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">40.80M</td>
+      <td style="border: 1px solid black;">Deformable DETR</td>
+      <td style="border: 1px solid black;">VMamba-T</td>
+      <td style="border: 1px solid black;">0.775</td>
+      <td style="border: 1px solid black;">0.788</td>
+      <td style="border: 1px solid black;">LDC</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">39.15M</td>
+      <td style="border: 1px solid black;">Deformable DETR</td>
+      <td style="border: 1px solid black;">ConvNext-T</td>
+      <td style="border: 1px solid black;">0.812</td>
+      <td style="border: 1px solid black;">0.833</td>
+      <td style="border: 1px solid black;">0.832</td>
+      <td style="border: 1px solid black;">0.741</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">41.35M</td>
+      <td style="border: 1px solid black;">FasterRCNN</td>
+      <td style="border: 1px solid black;">ResNet-50</td>
+      <td style="border: 1px solid black;">0.746</td>
+      <td style="border: 1px solid black;">0.810</td>
+      <td style="border: 1px solid black;">0.833</td>
+      <td style="border: 1px solid black;">0.843</td>
+      <td style="border: 1px solid black;">0.840</td>
+      <td style="border: 1px solid black;">0.663</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">44.75M</td>
+      <td style="border: 1px solid black;">FasterRCNN</td>
+      <td style="border: 1px solid black;">Swin-T</td>
+      <td style="border: 1px solid black;">0.793</td>
+      <td style="border: 1px solid black;">0.841</td>
+      <td style="border: 1px solid black;"><b>0.863</b></td>
+      <td style="border: 1px solid black;"><b>0.860</b></td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">46.71M</td>
+      <td style="border: 1px solid black;">FasterRCNN</td>
+      <td style="border: 1px solid black;">VMamba-T</td>
+      <td style="border: 1px solid black;">0.772</td>
+      <td style="border: 1px solid black;">0.788</td>
+      <td style="border: 1px solid black;">0.818</td>
+      <td style="border: 1px solid black;">0.802</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">45.05M</td>
+      <td style="border: 1px solid black;">FasterRCNN</td>
+      <td style="border: 1px solid black;">ConvNext</td>
+      <td style="border: 1px solid black;">0.784</td>
+      <td style="border: 1px solid black;">0.834</td>
+      <td style="border: 1px solid black;"><b>0.861</b></td>
+      <td style="border: 1px solid black;"><b>0.878</b></td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">11.14M</td>
+      <td style="border: 1px solid black;">Yolov8-s</td>
+      <td style="border: 1px solid black;">Yolov8CSPDarkNet</td>
+      <td style="border: 1px solid black;">0.747</td>
+      <td style="border: 1px solid black;">0.791</td>
+      <td style="border: 1px solid black;">0.812</td>
+      <td style="border: 1px solid black;">0.645</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+    <tr style="border: 1px solid black;">
+      <td style="border: 1px solid black;">43.69M</td>
+      <td style="border: 1px solid black;">Yolov8-l</td>
+      <td style="border: 1px solid black;">Yolov8CSPDarkNet</td>
+      <td style="border: 1px solid black;">0.746</td>
+      <td style="border: 1px solid black;">0.804</td>
+      <td style="border: 1px solid black;">0.802</td>
+      <td style="border: 1px solid black;">0.731</td>
+      <td style="border: 1px solid black;">NP</td>
+      <td style="border: 1px solid black;">NP</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div style="text-align: left;">
+  <iframe src="{{ 'assets/img/project3/plot_final.html' | relative_url }}" 
+          width="1200" 
+          height="600"
+          style="border:none;">
+  </iframe>
+</div>
+
+#### Adapting to new domain: Active learning
+
+
+<div class="project-gallery row text-center">
+    <div class="col-sm mt-3 mt-md-0">
+        <img src="{{ 'assets/img/project3/differences_in_new_data.png' | relative_url }}" alt="Survey location" data-title="Effective Receptive Fields (ERF) between different backbone models." class="img-fluid rounded z-depth-1" style="width: 50%; height: auto;">
+    </div>
+</div>
+<div class="caption">
+<p style="font-size: 12px; color: #555;">
+  Differrences between old and new surveys.
+</p>
+</div>
+
+
+In real world, the distribution of the dataset changes continously. This happened with our partner, DFO in their newly captured survey. Their new survey contains images with ice, new species and different size of the whale. To adress this, we use active learning which is a human-in-the-loop approach where few images are sampled from the unlabelled set such that the performance of the model will be maximized if trained on the new sample. We deploy this active learning pipeline using  <a href="https://labelstud.io/" target="_blank" style="color: #007bff; text-decoration: none;">Labelstudio</a>, where model's prediction is continously refined by a human annotator. 
+
+Below video shows an example image annotated and corrected using labelstudio. This workflow is moved into production and is currently utilzed by DFO for their annotation of the new survey.
+<!-- ![Alt text for the GIF](assets/img/project3/label_studio.gif) -->
+
+<div style="text-align: center;">
+  <img src="{{ 'assets/img/project3/label_studio.gif' | relative_url }}" alt="Model Demo" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;">
+</div>
