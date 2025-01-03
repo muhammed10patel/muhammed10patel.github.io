@@ -5,7 +5,7 @@ description: Leveraging state-of-the-art deep learning techniques for automated 
 img: assets/img/project3/cover_automatic_whale_detection.webp
 importance: 3
 category: work
-related_publications: True
+related_publications: False
 ---
 
 ### Highlights
@@ -264,7 +264,7 @@ The below table shows the  $$ mAP_{IoU=10\%} $$ the performance of all the exper
 
 <div class="project-gallery row text-center">
     <div class="col-sm mt-3 mt-md-0">
-        <img src="{{ 'assets/img/project3/differences_in_new_data.png' | relative_url }}" alt="Survey location" data-title="Effective Receptive Fields (ERF) between different backbone models." class="img-fluid rounded z-depth-1" style="width: 50%; height: auto;">
+        <img src="{{ 'assets/img/project3/differences_in_new_data.png' | relative_url }}" alt="Difference in old and new survey data" data-title="Domain gap between new and old survey" class="img-fluid rounded z-depth-1" style="width: 50%; height: auto;">
     </div>
 </div>
 <div class="caption">
@@ -274,7 +274,7 @@ The below table shows the  $$ mAP_{IoU=10\%} $$ the performance of all the exper
 </div>
 
 
-In real world, the distribution of the dataset changes continously. This happened with our partner, DFO in their newly captured survey. Their new survey contains images with ice, new species and different size of the whale. To adress this, we use active learning which is a human-in-the-loop approach where few images are sampled from the unlabelled set such that the performance of the model will be maximized if trained on the new sample. We deploy this active learning pipeline using  <a href="https://labelstud.io/" target="_blank" style="color: #007bff; text-decoration: none;">Labelstudio</a>, where model's prediction is continously refined by a human annotator. 
+In real world, the distribution of the dataset changes continuously. This happened with our partner, DFO in their newly captured survey. Their new survey contains images with ice, new species and different size of the whale. To address this, we use active learning which is a human-in-the-loop approach where few images are sampled from the unlabelled set such that the performance of the model will be maximized if trained on the new sample. We deploy this active learning pipeline using  <a href="https://labelstud.io/" target="_blank" style="color: #007bff; text-decoration: none;">Labelstudio</a>, where model's prediction is continuously refined by a human annotator.
 
 Below video shows an example image annotated and corrected using labelstudio. This workflow is moved into production and is currently utilzed by DFO for their annotation of the new survey.
 <!-- ![Alt text for the GIF](assets/img/project3/label_studio.gif) -->
@@ -282,3 +282,95 @@ Below video shows an example image annotated and corrected using labelstudio. Th
 <div style="text-align: center;">
   <img src="{{ 'assets/img/project3/label_studio.gif' | relative_url }}" alt="Model Demo" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;">
 </div>
+
+#### Active learning: Result
+
+The below table shows the evolution of the model after four active learning iterations
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+  <table border="1" style="border-collapse: collapse; text-align: center;">
+    <thead style="background-color: #d3d3d3;">
+      <tr>
+        <th>AL iter</th>
+        <th>AP<sub>IoU=10</sub></th>
+        <th>TP</th>
+        <th>FP</th>
+        <th>FN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>0.601</td>
+        <td>16</td>
+        <td>21</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>0.775</td>
+        <td>24</td>
+        <td>9</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>0.730</td>
+        <td>230</td>
+        <td>83</td>
+        <td>9</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>0.740</td>
+        <td>10</td>
+        <td>4</td>
+        <td>5</td>
+      </tr>
+      <tr style="background-color: #d3d3d3;">
+        <td>Total</td>
+        <td></td>
+        <td>280</td>
+        <td>117</td>
+        <td>19</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+The before and after results of finetuning the model is visualized in the below figure.
+
+<div id="gallery1" class="project-gallery row text-center">
+  <!-- First Row -->
+  <div class="col-md-6 col-sm-12 mt-3 position-relative">
+    <div style="position: absolute; top: 10px; left: 10px; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px;">
+      Before active learning
+    </div>
+    <img src="{{ 'assets/img/project3/non_20230823_25mm_cam2_14127.jpg' | relative_url }}" alt="Image 1" data-title="2014 Dataset" class="img-fluid rounded z-depth-1">
+  </div>
+  <div class="col-md-6 col-sm-12 mt-3 position-relative">
+    <div style="position: absolute; top: 10px; right: 10px; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px;">
+      After active learning
+    </div>
+    <img src="{{ 'assets/img/project3/ft_20230823_25mm_cam2_14127.jpg' | relative_url }}" alt="Image 2" data-title="2015 Dataset" class="img-fluid rounded z-depth-1">
+  </div>
+</div>
+<div id="gallery1" class="project-gallery row text-center">
+  <!-- Second Row -->
+  <div class="col-md-6 col-sm-12 mt-3">
+    <img src="{{ 'assets/img/project3/non_ft_20230828_25mm_cam1_05655.jpg' | relative_url }}" alt="Image 3" data-title="2016 Dataset" class="img-fluid rounded z-depth-1">
+  </div>
+  <div class="col-md-6 col-sm-12 mt-3">
+    <img src="{{ 'assets/img/project3/ft_20230828_25mm_cam1_05655.jpg' | relative_url }}" alt="Image 4" data-title="2017 Dataset" class="img-fluid rounded z-depth-1">
+  </div>
+</div>
+
+<!-- Add common caption -->
+<div class="gallery-caption text-center mt-3">
+  <p style="font-size: 12px; color: #555;">
+    Left shows the model’s predictions before fine-tuning. Right shows the predictions after finetuning. Box color coding: <span style="color: green;">Green</span>, FP: <span style="color: red;">Red</span>, FN: <span style="color: blue;">Blue</span>.
+  </p>
+</div>
+
+#### Thesis
+
+I've published a thesis as a part of my Master's program and the manuscript is available [here](https://uwspace.uwaterloo.ca/items/e249219d-797f-47cd-9166-d68cc98a5841).
