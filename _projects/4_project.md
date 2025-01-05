@@ -174,7 +174,7 @@ Sentence captions were generated only for datasets where there was consistency b
     Visualizations showing model predictions in novel environments. Green boxes indicate true positives, red for false positives.
 </div> -->
 
-<div class="project-gallery row text-center">
+<!-- <div class="project-gallery row text-center">
     <div class="col-sm mt-3 mt-md-0">
         <img src="{{ 'assets/img/project3/patches.png' | relative_url }}" alt="Survey location" data-title="Patches from size 256-4096 highliting importance of the context" class="img-fluid rounded z-depth-1" style="width: 100%; height: auto;">
     </div>
@@ -184,7 +184,7 @@ Sentence captions were generated only for datasets where there was consistency b
     Patches from size 256 to 4096. Orientation of the waves is critical to discern
 whales from waves.
   </p>
-</div>
+</div> -->
 
 #### Caption generation
 
@@ -206,7 +206,7 @@ An example of such annotation for aerial imagery is shown in below figure.
 
 <div class="project-gallery row text-center">
     <div class="col-sm mt-3 mt-md-0">
-        <img src="{{ 'assets/img/project4/140803_Cam2_00456.png' | relative_url }}" alt="Example of rich annotation" data-title="Example of rich annotation" class="img-fluid rounded z-depth-1" style="width: 40%; height: auto;">
+        <img src="{{ 'assets/img/project4/140803_Cam2_00456.png' | relative_url }}" alt="Example of rich annotation" data-title="Example of rich annotation" class="img-fluid rounded z-depth-1" style="width: 60%; height: auto;">
     </div>
 </div>
 <div class="caption">
@@ -223,7 +223,7 @@ feeding grounds.
 
 #### Result
 
-The below table shows the mAP50 performance of the OpenWildlife model on different dataset in open-set continuous fine-tuning. Meaning the model has seen this domain and species before, but the model is tested on held-out test dataset.
+The table below presents the mAP50 performance of the OpenWildlife model across various datasets during open-set continuous fine-tuning. In this setup, the model has been exposed to the domain and species during training but is evaluated on a separate, held-out test dataset to assess its performance.
 
 <div class="table2-container">
 <table border="1" style="border-collapse: collapse; text-align: center;">
@@ -367,9 +367,9 @@ The below table shows the mAP50 performance of the OpenWildlife model on differe
 </p>
 </div>
 
-Since the original point of the OpenWildlife architecture is to get an openvocabulary model capable of detecting any species in any domain, we test the performance over 6 datasets in complete zero shot setting.
+The primary objective of the OpenWildlife architecture is to develop an open-vocabulary model capable of detecting any species across any domain. To evaluate its effectiveness, we test the model's performance on six datasets in a complete zero-shot setting.
 
-The below table shows the performance in zeroshot setting:
+The table below highlights the performance metrics in this zero-shot scenario:
 
 <div class="table2-container">
 <table>
@@ -425,118 +425,140 @@ The below table shows the performance in zeroshot setting:
         </tbody>
 </table>
 </div>
-#### Adapting to new domain: Active learning
+
+#### Zero Visual results
+
+Open Set finetuning Predictions of our model are presented in **[dataset section](#dataset)**. We present all the zero shot result in this section.
 
 <div class="project-gallery row text-center">
     <div class="col-sm mt-3 mt-md-0">
-        <img src="{{ 'assets/img/project3/differences_in_new_data.png' | relative_url }}" alt="Survey location" data-title="Effective Receptive Fields (ERF) between different backbone models." class="img-fluid rounded z-depth-1" style="width: 50%; height: auto;">
+        <img src="{{ 'assets/img/project4/full_zero_shot_results.png' | relative_url }}" alt="Survey location" data-title="Full zero shot predictions" class="img-fluid rounded z-depth-1" style="width: 100%; height: auto;">
     </div>
 </div>
 <div class="caption">
 <p style="font-size: 12px; color: #555;">
-  Differrences between old and new surveys.
+Left: multi-species detection. Right: contrasts the performance of the OW Keyword
+and OW Sentence models. TP is marked as green, FP as red, FN as blue. In some cases, grounding with descriptive sentences appears to
+improve bounding box tightness and robustness to background features.
 </p>
 </div>
 
-In real world, the distribution of the dataset changes continuously. This happened with our partner, DFO in their newly captured survey. Their new survey contains images with ice, new species and different size of the whale. To address this, we use active learning which is a human-in-the-loop approach where few images are sampled from the unlabelled set such that the performance of the model will be maximized if trained on the new sample. We deploy this active learning pipeline using <a href="https://labelstud.io/" target="_blank" style="color: #007bff; text-decoration: none;">Labelstudio</a>, where model's prediction is continuously refined by a human annotator.
+Since our model is trained using fine-semantic captions, it developed a nuanced understanding of the world. The below figures shows the prediction of the model with different captions.
 
-Below video shows an example image annotated and corrected using labelstudio. This workflow is moved into production and is currently utilzed by DFO for their annotation of the new survey.
-
-<!-- ![Alt text for the GIF](assets/img/project3/label_studio.gif) -->
-
-<div style="text-align: center;">
-  <img src="{{ 'assets/img/project3/label_studio.gif' | relative_url }}" alt="Model Demo" style="width: 80%; border: 1px solid #ddd; border-radius: 5px;">
+<div class="project-gallery row text-center">
+    <div class="col-sm mt-3 mt-md-0">
+        <img src="{{ 'assets/img/project4/semantic_understanding.png' | relative_url }}" alt="Survey location" data-title="Full zero shot predictions" class="img-fluid rounded z-depth-1" style="width: 70%; height: auto;">
+    </div>
+</div>
+<div class="caption">
+<p style="font-size: 12px; color: #555;">
+Zero-shot detection on Virunga-Garamba for different text prompts, where bolded text represents the class model was asked to predict. Our model exhibits semantic understanding of shape and shadows.
+</p>
 </div>
 
-#### Active learning: Result
+#### Social target Search
 
-The below table shows the evolution of the model after four active learning iterations
+In the wild, animals such as lions, zebras, and whales often live in groups. Traditional aerial surveys aim to capture entire animal hotspots; however, advancements in satellite imaging resolution have made it possible to focus on smaller, targeted areas, significantly reducing costs. To capitalize on this, we propose an intelligent search strategy called Social Target Search. This method leverages the social behavior of animals and employs k-nearest neighbors and breadth-first search algorithms to selectively sample images or areas with a high probability of containing animals. The approach is using the prior information that 'if an animal is detected in one image, there is a strong likelihood of finding more animals in neighboring images.'
 
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-  <table border="1" style="border-collapse: collapse; text-align: center;">
-    <thead style="background-color: #d3d3d3;">
-      <tr>
-        <th>AL iter</th>
-        <th>AP<sub>IoU=10</sub></th>
-        <th>TP</th>
-        <th>FP</th>
-        <th>FN</th>
-      </tr>
+Among the datasets used, only the in-house DFO whale dataset includes georeferencing. Other publicly available datasets lacked georeferencing, maybe to protect the species. To evaluate our Social Target Search method, we utilized whale survey data collected by DFO in three different years.
+
+Below gif shows the images explored at various steps using our Social Target search method.
+
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <div style="text-align: center; width: 30%;">
+    <img src="{{ 'assets/img/project4/Search_method_2014.gif' | relative_url }}" alt="GIF 1" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+    <p style="margin-top: 5px; font-size: 14px; color: #555;">DFO Beluga 2014</p>
+  </div>
+  <div style="text-align: center; width: 30%;">
+    <img src="{{ 'assets/img/project4/Search_method_2016.gif' | relative_url }}" alt="GIF 2" style="width: 100%; border: 1px solid #ddd; border-radius: 5px;">
+    <p style="margin-top: 5px; font-size: 14px; color: #555;">DFO Narwhal 2016</p>
+  </div>
+  <div style="text-align: center; width: 30%;">
+    <img src="{{ 'assets/img/project4/Search_method_2017.gif' | relative_url }}" alt="GIF 3" style="width: 120%; border: 1px solid #ddd; border-radius: 5px;">
+    <p style="margin-top: 5px; font-size: 14px; color: #555;">DFO Beluga 2017</p>
+  </div>
+</div>
+
+<table border="1" style="border-collapse: collapse; text-align: center; width: 100%;">
+    <thead>
+        <tr>
+            <th>Dataset</th>
+            <th>% Images Analyzed</th>
+            <th>% Explored Images Containing Whales</th>
+            <th>% Whales Detected</th>
+        </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>0.601</td>
-        <td>16</td>
-        <td>21</td>
-        <td>1</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>0.775</td>
-        <td>24</td>
-        <td>9</td>
-        <td>4</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>0.730</td>
-        <td>230</td>
-        <td>83</td>
-        <td>9</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>0.740</td>
-        <td>10</td>
-        <td>4</td>
-        <td>5</td>
-      </tr>
-      <tr style="background-color: #d3d3d3;">
-        <td>Total</td>
-        <td></td>
-        <td>280</td>
-        <td>117</td>
-        <td>19</td>
-      </tr>
+        <tr>
+            <td>DFOW14</td>
+            <td>32.3 ± 11.2</td>
+            <td>96.3 ± 0.6</td>
+            <td>98.7 ± 0.4</td>
+        </tr>
+        <tr>
+            <td>DFOW16</td>
+            <td>56.8 ± 14.5</td>
+            <td>95.0 ± 5.0</td>
+            <td>97.5 ± 3.0</td>
+        </tr>
+        <tr>
+            <td>DFOW17</td>
+            <td>56.9 ± 8.6</td>
+            <td>95.2 ± 0.5</td>
+            <td>98.7 ± 1.0</td>
+        </tr>
     </tbody>
-  </table>
+</table>
+<div class="caption">
+<p style="font-size: 12px; color: #555;">
+Results of the STS algorithm using the ground truth annotations as predictions. From left to right, the metrics represent:
+the proportion of images explored relative to the total dataset size(lower percentage is preferable), the proportion of explored images
+containing whales relative to the total number of whale-containing images in the dataset, and the detection rate of whales.
+</p>
 </div>
 
-The before and after results of finetuning the model is visualized in the below figure.
+The below figure shows the location of all the images and the particular images explored by our search algorithm.
 
-<div id="gallery1" class="project-gallery row text-center">
-  <!-- First Row -->
-  <div class="col-md-6 col-sm-12 mt-3 position-relative">
-    <div style="position: absolute; top: 10px; left: 10px; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px;">
-      Before active learning
+<div class="project-gallery row text-center">
+    <div class="col-sm mt-3 mt-md-0">
+        <img src="{{ 'assets/img/project4/before_after.png' | relative_url }}" alt="Survey location" data-title="Full zero shot predictions" class="img-fluid rounded z-depth-1" style="width: 70%; height: auto;">
     </div>
-    <img src="{{ 'assets/img/project3/non_20230823_25mm_cam2_14127.jpg' | relative_url }}" alt="Image 1" data-title="2014 Dataset" class="img-fluid rounded z-depth-1">
-  </div>
-  <div class="col-md-6 col-sm-12 mt-3 position-relative">
-    <div style="position: absolute; top: 10px; right: 10px; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 5px; border-radius: 5px;">
-      After active learning
-    </div>
-    <img src="{{ 'assets/img/project3/ft_20230823_25mm_cam2_14127.jpg' | relative_url }}" alt="Image 2" data-title="2015 Dataset" class="img-fluid rounded z-depth-1">
-  </div>
 </div>
-<div id="gallery1" class="project-gallery row text-center">
-  <!-- Second Row -->
-  <div class="col-md-6 col-sm-12 mt-3">
-    <img src="{{ 'assets/img/project3/non_ft_20230828_25mm_cam1_05655.jpg' | relative_url }}" alt="Image 3" data-title="2016 Dataset" class="img-fluid rounded z-depth-1">
-  </div>
-  <div class="col-md-6 col-sm-12 mt-3">
-    <img src="{{ 'assets/img/project3/ft_20230828_25mm_cam1_05655.jpg' | relative_url }}" alt="Image 4" data-title="2017 Dataset" class="img-fluid rounded z-depth-1">
-  </div>
+<div class="caption">
+<p style="font-size: 12px; color: #555;">
+Top row: Location of all images in the datasets. Red dots indicate images with at least one annotated whale, green dots indicate
+images with no whales annotated. Note the clustering of whale-positive images. Bottom row: Location of the images explored by the STS
+algorithm. Observe the reduction in images searched.
+</p>
 </div>
 
-<!-- Add common caption -->
-<div class="gallery-caption text-center mt-3">
-  <p style="font-size: 12px; color: #555;">
-    Left shows the model’s predictions before fine-tuning. Right shows the predictions after finetuning. Box color coding: <span style="color: green;">Green</span>, FP: <span style="color: red;">Red</span>, FN: <span style="color: blue;">Blue</span>.
-  </p>
+In the results above, ground-truth annotations were used to evaluate STS. For real-world applicability, we propose using the OpenWildlife model to provide annotations for the sampled images instead of relying on ground-truth data. We did not train the OpenWildlife model on the DFO Whale 2017 dataset. Now we use OpenWildlife model with Social target search to determine the locations of whale in the entire dataset.
+
+Below table shows the result of social target search. Our search method find 80% of total whales while exploring only 33% of the total images.
+
+<div class="table2-container">
+<table border="1" style="border-collapse: collapse; text-align: center; width: 100%;">
+    <thead>
+        <tr>
+            <th>OW Model</th>
+            <th>% Images Analyzed</th>
+            <th>% Images Containing Whales</th>
+            <th>% Whales Detected</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Sentence</td>
+            <td>33.2 ± 5.9</td>
+            <td>43.2 ± 0.3</td>
+            <td>79.6 ± 1.2</td>
+        </tr>
+        <tr>
+            <td>Keyword</td>
+            <td>29.5 ± 8.1</td>
+            <td>38.0 ± 3.4</td>
+            <td>65.7 ± 3.8</td>
+        </tr>
+    </tbody>
+</table>
 </div>
-
-#### Thesis
-
-I've published a thesis as a part of my Master's program and the manuscript is available [here](https://uwspace.uwaterloo.ca/items/e249219d-797f-47cd-9166-d68cc98a5841).
