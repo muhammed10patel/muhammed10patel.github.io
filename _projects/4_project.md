@@ -361,7 +361,7 @@ The table below presents the mAP50 performance of the OpenWildlife model across 
 
 <div class="caption">
 <p style="font-size: 12px; color: #555;">
-      Results of open-set continuous fine-tuning. <strong>Bold</strong> numbers
+    Results of open-set continuous fine-tuning. <strong>Bold</strong> numbers
     denote the best metric between literature results and OW Keyword results. Results
     marked with † indicate a 200-pixel Chebyshev distance allowance to be considered a true positive.
 </p>
@@ -534,7 +534,7 @@ algorithm. Observe the reduction in images searched.
 
 In the results above, ground-truth annotations were used to evaluate STS. For real-world applicability, we propose using the OpenWildlife model to provide annotations for the sampled images instead of relying on ground-truth data. We did not train the OpenWildlife model on the DFO Whale 2017 dataset. Now we use OpenWildlife model with Social target search to determine the locations of whale in the entire dataset.
 
-Below table shows the result of social target search. Our search method find 80% of total whales while exploring only 33% of the total images.
+Below table shows the result of social target search. Our search method finds 80% of total whales while exploring only 33% of the total images.
 
 <div class="table2-container">
 <table border="1" style="border-collapse: collapse; text-align: center; width: 100%;">
