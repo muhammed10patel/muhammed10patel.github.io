@@ -4,7 +4,7 @@ title: Pixel level segmentation from Region level labels
 description: Weakly supervised learning for sea ice segmentation
 img: assets/img/project5/cover2.webp
 importance: 5
-category: work
+category: Academic
 related_publications: False
 ---
 

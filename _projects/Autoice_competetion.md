@@ -4,7 +4,7 @@ title: Autoice Competition
 description: Organised by European Space Agency
 img: assets/img/auto_ice_challenge.png
 importance: 2
-category: work
+category: Academic
 giscus_comments: false
 ---
 

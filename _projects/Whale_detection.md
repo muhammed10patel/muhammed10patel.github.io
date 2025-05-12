@@ -4,7 +4,7 @@ title: Automatic Whale Detection Using Deep Learning
 description: Leveraging state-of-the-art deep learning techniques for automated whale detection.
 img: assets/img/project3/cover_automatic_whale_detection.webp
 importance: 3
-category: work
+category: Academic
 related_publications: False
 ---
 
