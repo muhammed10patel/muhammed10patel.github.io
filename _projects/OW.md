@@ -3,7 +3,7 @@ layout: page
 title: Open-Vocabulary Wildlife Detector from aerial images
 description: leveraging textual inputs for open vocabulary animal detection
 img: assets/img/project4/open_wildlife_cover.png
-importance: 4
+importance: 1
 category: Academic
 related_publications: False
 ---

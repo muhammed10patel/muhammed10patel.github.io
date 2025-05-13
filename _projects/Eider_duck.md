@@ -102,9 +102,6 @@ Other features of the pipeline include:
 </p>
 </div>
 
-In general computer vision there are datasets like O365, GOLD and V3Det which have rich semantic annotation for each image. An example of such rich annotation is shown in the figure below. However in aerial images of animal, obtaining such rich annotation is difficult and laborious. To circumvent that, we leverage the world knowledge acquired by LLMs. Specifically, we use OpenAI’s GPT-4o-mini, Batch API to generate a caption for our image with three components: a general description of the dataset, visual description of the animal present and details about their habitat and population density. These captions provides the necessary context that will help improve the prediction performance.
-
-
 #### Result
 
 

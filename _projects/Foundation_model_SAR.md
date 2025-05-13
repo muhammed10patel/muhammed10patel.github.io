@@ -3,7 +3,7 @@ layout: page
 title: Foundation model for SAR imagery
 description: using MAE for pretraining a ViT backbone on SAR data
 img: assets/img/MAE-picture.png
-importance: 1
+importance: 4
 category: Academic
 related_publications: false
 ---
