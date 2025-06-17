@@ -134,6 +134,15 @@ Other features of the pipeline include:
   </p>
 </div>
 
+
+<div style="text-align: center; margin: 30px 0;">
+  <video width="80%" controls>
+    <source src="{{ 'assets/video/annotation_interface_demo_v2.mp4' | relative_url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p style="font-size: 14px; color: #666; margin-top: 8px;">Demo video of OpenWildlife detector in action</p>
+</div>
+
 #### Deployment
 
 Poetry is used to manage the dependencies of the project. The project is containerized using Docker, which allows for easy deployment and scalability. The complete pipeline (frontend + backend) is deployed on Google Cloud Platform (GCP) and is used by Arctic Eider Society to annotate images. This allows for easy scaling of the pipeline to handle large datasets and multiple annotators. The project will be soon open-sourced and made available to the public.
